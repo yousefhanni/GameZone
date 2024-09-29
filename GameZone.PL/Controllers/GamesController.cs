@@ -8,6 +8,7 @@
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -18,22 +19,49 @@
         {
             CreateGameFormViewModel viewModel = new()
             {
-                //Fetch Categories from database and Select() method transforms each Category into a SelectListItem
-                Categories = _context.Categories 
-                             .Select(c => new SelectListItem //convert each category from db to SelectListItem
+                Categories = _context.Categories
+                             .Select(c => new SelectListItem
                              {
                                  Value = c.Id.ToString(),
                                  Text = c.Name
-                             }).OrderBy(c=>c.Text)//To order Categories by name
+                             }).OrderBy(c => c.Text)
                              .ToList(),
 
-                    Devices = _context.Devices
-                             .Select(d => new SelectListItem  {Value = d.Id.ToString(),Text = d.Name })
+                Devices = _context.Devices
+                             .Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name })
                              .OrderBy(d => d.Text)
                              .ToList()
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateGameFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Categories = _context.Categories
+                             .Select(c => new SelectListItem
+                             {
+                                 Value = c.Id.ToString(),
+                                 Text = c.Name
+                             }).OrderBy(c => c.Text)
+                             .ToList();
+
+                model.Devices = _context.Devices
+                             .Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name })
+                             .OrderBy(d => d.Text)
+                             .ToList();
+
+                return View(model);
+            }
+
+            // save the game to the database
+            // save cover to the server
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
