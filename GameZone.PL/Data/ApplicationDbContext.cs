@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace GameZone.PL.Data
+﻿namespace GameZone.PL.Data
 {
     public class ApplicationDbContext:DbContext
     {
@@ -8,6 +6,18 @@ namespace GameZone.PL.Data
       : base(options)
         {
         }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<GameDevice> GameDevices { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Composite P.K => M-M
+            modelBuilder.Entity<GameDevice>()
+                .HasKey(e => new { e.GameId, e.DeviceId });
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
