@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameZone.PL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240929002256_AddModels")]
+    [Migration("20240929004247_AddModels")]
     partial class AddModels
     {
         /// <inheritdoc />
@@ -40,6 +40,38 @@ namespace GameZone.PL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Sports"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Adventure"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Racing"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Fighting"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Film"
+                        });
                 });
 
             modelBuilder.Entity("GameZone.PL.Models.Device", b =>
@@ -63,6 +95,32 @@ namespace GameZone.PL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Devices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Icon = "bi bi-playstation",
+                            Name = "PlayStation"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Icon = "bi bi-xbox",
+                            Name = "xbox"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Icon = "bi bi-nintendo-switch",
+                            Name = "Nintendo Switch"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Icon = "bi bi-pc-display",
+                            Name = "PC"
+                        });
                 });
 
             modelBuilder.Entity("GameZone.PL.Models.Game", b =>
