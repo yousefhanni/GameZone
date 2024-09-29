@@ -1,12 +1,13 @@
 ﻿
-namespace GameZone.ViewModels
+namespace GameZone.PL.ViewModels
 {
     public class CreateGameFormViewModel
     {
         [MaxLength(250)]
-        public string Name { get; set; }
+        public string Name { get; set; }    
         [Display(Name = "Category")]
-        public int CaregoryId { get; set; }
+        public int CaregoryId { get; set; }//ID of the selected category for the game
+        //Get available categories in a dropdown list.
         public IEnumerable<SelectListItem>? Categories { get; set; } = Enumerable.Empty<SelectListItem>();
 
         [Display(Name = "Support Device")]
