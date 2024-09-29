@@ -49,6 +49,7 @@
 </body>
 </html>
  *@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,11 +78,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Games" asp-action="Index">Games</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Categories" asp-action="Index">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Devices" asp-action="Index">Devices</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container flex-grow-1">
         <main role="main" class="pb-3">
             @RenderBody()

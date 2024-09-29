@@ -1,4 +1,4 @@
-
+﻿
 
 /** {
     font-family: 'Chakra Petch', sans-serif;
@@ -149,3 +149,25 @@ body {
     border-radius: 8px;
     /*    max-width:800px;*/
 }
+.btn-add-category, .btn-add-device {
+    background-color: #ff00ff; /* اللون الأساسي */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px; /* تصغير التباعد الداخلي */
+    font-size: 0.9rem; /* تصغير حجم الخط */
+    border-radius: 30px; /* نصف قطر الزوايا مع الحفاظ على الأزرار المستديرة */
+    border: none;
+    display: inline-block;
+    text-transform: uppercase;
+    transition: none; /* إزالة تأثير التحويم */
+}
+
+    .btn-add-category i, .btn-add-device i {
+        margin-right: 6px; /* تقليل المسافة بين الأيقونة والنص */
+    }
+
+    .btn-add-category:hover, .btn-add-device:hover {
+        background-color: #ff00ff; /* بدون تأثير التحويم */
+        color: white; /* يظل النص أبيض */
+        transform: none; /* إزالة التحريك */
+    }

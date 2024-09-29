@@ -1,0 +1,73 @@
+﻿@* @model IEnumerable<GameZone.PL.ViewModels.DeviceViewModel>
+
+@{
+    ViewData["Title"] = "Devices";
+}
+
+<h2>Devices</h2>
+
+<div class="d-flex justify-content-start">
+    <a class="btn btn-add-device mt-2" asp-action="Create">
+        <i class="bi bi-plus-circle-dotted"></i> Add Device
+    </a>
+</div>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var device in Model)
+        {
+            <tr>
+                <td>@device.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@device.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@device.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+ *@
+ @model IEnumerable<GameZone.PL.ViewModels.DeviceViewModel>
+
+@{
+    ViewData["Title"] = "Devices";
+}
+
+<h2>Devices</h2>
+
+<div class="d-flex justify-content-start">
+    <a class="btn btn-add-device mt-2" asp-action="Create">
+        <i class="bi bi-plus-circle-dotted"></i> Add Device
+    </a>
+</div>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Icon</th>
+            <th>Number of Supported Games</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var device in Model)
+        {
+            <tr>
+                <td>@device.Name</td>
+                <td><i class="@device.Icon"></i></td>
+                <td>@device.SupportedGameCount</td> <!-- Display SupportedGameCount here -->
+                <td>
+                    <a asp-action="Edit" asp-route-id="@device.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@device.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
