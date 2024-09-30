@@ -2,6 +2,7 @@
 
 namespace GameZone.PL.Repositories
 {
+    //layer deal Direct with DB 
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         private readonly ApplicationDbContext _context;

@@ -11,7 +11,6 @@
         [MaxLength(50)]
         public string Icon { get; set; } = string.Empty;
 
-        // أي بيانات إضافية تحتاجها في الـView يمكنك إضافتها هنا
-        public int SupportedGameCount { get; set; } // عدد الألعاب التي تدعم هذا الجهاز
+        public int SupportedGameCount { get; set; } 
     }
 }

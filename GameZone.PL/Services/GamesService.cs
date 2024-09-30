@@ -1,7 +1,4 @@
-﻿
-using GameZone.PL.Interfaces;
-
-namespace GameZone.PL.Services;
+﻿namespace GameZone.PL.Services;
   public class GamesService : IGamesService
     {
         private readonly IGenericRepository<Game> _gameRepository;
@@ -13,7 +10,7 @@ namespace GameZone.PL.Services;
         {
             _gameRepository = gameRepository;
             _webHostEnvironment = webHostEnvironment;
-            _imagesPath = $"{_webHostEnvironment.WebRootPath}/images/";
+            _imagesPath = $"{_webHostEnvironment.WebRootPath}{FileSettings.ImagesPath}";
         }
 
         public IEnumerable<Game> GetAll()
@@ -36,7 +33,7 @@ namespace GameZone.PL.Services;
                 Description = model.Description,
                 CategoryId = model.CaregoryId,
                 Cover = coverName,
-                Devices = model.SelectedDevices.Select(d => new GameDevice { DeviceId = d }).ToList()
+                Devices = model.SelectedDevices.Select(d => new GameDevice { DeviceId = d }).ToList()//make projection to convert from list to SelectedList 
             };
 
             _gameRepository.Add(game);
@@ -53,7 +50,7 @@ namespace GameZone.PL.Services;
             game.Name = model.Name;
             game.Description = model.Description;
             game.CategoryId = model.CategoryId;
-            game.Devices = model.SelectedDevices.Select(d => new GameDevice { DeviceId = d }).ToList();
+            game.Devices = model.SelectedDevices.Select(d => new GameDevice { DeviceId = d }).ToList();//to convert the list of device IDs(SelectedDevices, which is a list of integers) into a list of GameDevice objects. 
 
             if (model.Cover != null)
             {

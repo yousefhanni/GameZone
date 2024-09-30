@@ -1,5 +1,3 @@
-using GameZone.PL.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace GameZone.PL.Controllers

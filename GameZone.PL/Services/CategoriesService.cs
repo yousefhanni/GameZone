@@ -1,16 +1,17 @@
-﻿    using GameZone.PL.Interfaces;
-
-    namespace GameZone.PL.Services;
+﻿   namespace GameZone.PL.Services;
     public class CategoriesService : ICategoriesService
     {
-        private readonly IGenericRepository<Category> _categoryRepository;
+    private readonly IGenericRepository<Category> _categoryRepository;
+    private readonly IGenericRepository<Game> _gameRepository;
 
-        public CategoriesService(IGenericRepository<Category> categoryRepository)
-        {
-            _categoryRepository = categoryRepository;
-        }
-
-        public IEnumerable<SelectListItem> GetSelectList()
+    public CategoriesService(IGenericRepository<Category> categoryRepository,
+                             IGenericRepository<Game> gameRepository)
+    {
+        _categoryRepository = categoryRepository;
+        _gameRepository = gameRepository;
+    }
+    //To Game Controller only  
+    public IEnumerable<SelectListItem> GetSelectList()
         {
             return _categoryRepository.GetAll()
                 .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name })
@@ -23,7 +24,6 @@
             _categoryRepository.Add(category);
             await _categoryRepository.SaveAsync();
         }
-
         public async Task UpdateCategoryAsync(Category category)
         {
             _categoryRepository.Update(category);
@@ -44,6 +44,10 @@
         }
     public IEnumerable<Category> GetAllCategories()
     {
-        return _categoryRepository.GetAll();
+        return _categoryRepository.GetAll().Select(category =>
+        {
+            category.Games = _gameRepository.GetAll().Where(g => g.CategoryId == category.Id).ToList();
+            return category;
+        });
     }
 }

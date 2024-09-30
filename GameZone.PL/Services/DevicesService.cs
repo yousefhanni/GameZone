@@ -1,7 +1,4 @@
-﻿using GameZone.PL.Interfaces;
-using GameZone.PL.ViewModels;
-
-namespace GameZone.PL.Services;
+﻿namespace GameZone.PL.Services;
 public class DevicesService : IDevicesService
 {
     private readonly IGenericRepository<Device> _deviceRepository;
@@ -14,6 +11,7 @@ public class DevicesService : IDevicesService
         _gameDeviceRepository = gameDeviceRepository;
     }
 
+    //To Game Controller only  
     public IEnumerable<SelectListItem> GetSelectList()
     {
         return _deviceRepository.GetAll()
@@ -27,14 +25,12 @@ public class DevicesService : IDevicesService
         _deviceRepository.Add(device);
         await _deviceRepository.SaveAsync();
     }
-
     public async Task UpdateDeviceAsync(Device device)
     {
         _deviceRepository.Update(device);
         await _deviceRepository.SaveAsync();
     }
-
-    public Device GetById(int id) // Add this method
+    public Device GetById(int id)
     {
         return _deviceRepository.GetById(id);
     }
@@ -47,12 +43,10 @@ public class DevicesService : IDevicesService
             await _deviceRepository.SaveAsync();
         }
     }
-    // إضافة الطريقة الجديدة
     public IEnumerable<Device> GetAllDevices()
     {
         return _deviceRepository.GetAll();
     }
-
     public int GetSupportedGameCount(int deviceId)
     {
         return _gameDeviceRepository.GetAll()
