@@ -18,9 +18,9 @@ namespace GameZone.PL.ViewModels
 
         [MaxLength(2500)]
         public string Description { get; set; }
-        
-        [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Only .jpg, .jpeg, .png files are allowed.")]
-        [MaxFileSize(FileSettings.MaxFileSizeInMB)]
+
+        [AllowedExtensions(FileSettings.AllowedExtensions),
+        MaxFileSize(FileSettings.MaxFileSizeInMB)]
         public IFormFile Cover { get; set; }
     }
 }

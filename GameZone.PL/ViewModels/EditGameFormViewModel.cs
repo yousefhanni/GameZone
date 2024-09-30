@@ -10,7 +10,7 @@ public class EditGameFormViewModel : GameFormViewModel
 
     public string? CurrentCover { get; set; }
 
-    [FileExtensions(Extensions = "jpg,jpeg,png", ErrorMessage = "Only .jpg, .jpeg, .png files are allowed.")]
-    [MaxFileSize(FileSettings.MaxFileSizeInMB)]
+    [AllowedExtensions(FileSettings.AllowedExtensions),
+    MaxFileSize(FileSettings.MaxFileSizeInBytes)]
     public IFormFile? Cover { get; set; } = default!;
 }
