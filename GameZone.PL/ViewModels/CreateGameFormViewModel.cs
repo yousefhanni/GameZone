@@ -20,7 +20,7 @@ namespace GameZone.PL.ViewModels
         public string Description { get; set; }
 
         [AllowedExtensions(FileSettings.AllowedExtensions),
-        MaxFileSize(FileSettings.MaxFileSizeInMB)]
+      MaxFileSize(FileSettings.MaxFileSizeInBytes)]
         public IFormFile Cover { get; set; }
     }
 }

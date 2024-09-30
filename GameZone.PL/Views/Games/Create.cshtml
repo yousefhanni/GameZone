@@ -17,41 +17,42 @@
                 <input asp-for="Name" type="text" class="form-control" placeholder="Name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="CaregoryId" class="form-label mt-4"></label>
-                <select class="form-select" asp-for="CaregoryId" asp-items="Model.Categories">
-                    <option value="">Select a category</option>
+                <select class="form-select" asp-for="CaregoryId" asp-items="Model.Categories"
+                        data-placeholder="Select a category" data-minimum-results-for-search="Infinity">
+                    <option value=""></option>
                 </select>
                 <span asp-validation-for="CaregoryId" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="SelectedDevices" class="form-label mt-4"></label>
-                <select class="form-select h-25" asp-for="SelectedDevices" asp-items="Model.Devices" multiple>
-                    <option value="">Select devices</option>
+                <select class="form-select" asp-for="SelectedDevices" asp-items="Model.Devices"
+                        data-placeholder="Select devices">
+                    <option></option>
                 </select>
                 <span asp-validation-for="SelectedDevices" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Description" class="form-label mt-4"></label>
                 <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Cover" class="form-label mt-4"></label>
-                <input asp-for="Cover" type="file" class="form-control"
+                <input type="file" class="form-control" asp-for="Cover"
                        data-rule-extension="@FileSettings.AllowedExtensions.Replace(".", string.Empty)"
                        data-msg-extension="Not allowed extension"
                        data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
-                       data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB">  
+                       data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB">
                 <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @(FileSettings.MaxFileSizeInMB)MB.</small>
                 <span asp-validation-for="Cover" class="text-danger d-block"></span>
             </div>
 
             <button type="submit" class="btn btn-info btn-lg text-black mt-4">Save</button>
+        </div>  
+        <div class="col-md-6 d-flex justify-content-center pt-4 overflow-hidden">
+            <img class="cover-preview d-none" alt="Cover" />
         </div>
     </div>
 </form>

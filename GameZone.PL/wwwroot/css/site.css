@@ -1,123 +1,4 @@
-﻿
-
-/** {
-    font-family: 'Chakra Petch', sans-serif;
-}
-html {
-  font-size: 14px;
-  position: relative;
-  min-height: 100%;
-  height: 100%;*/ /* Ensure html and body take full height */
-/*}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;*/ /* Ensure the body takes at least full viewport height */
-  /*margin: 0;
-}
-
-.container {
-  flex: 1;*/ /* This makes the container take up the remaining space */
-/*}
-
-footer {
-  text-align: center;
-  margin-top: auto;*/ /* Ensures footer stays at the bottom of the page */
-  /*padding: 10px;
-}
-
-
-button {
-    z-index: 9999;
-    position: relative;*/ /* Ensure the button is placed properly */
-/*}*/
-
-/** {
-    font-family: 'Chakra Petch', sans-serif;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    font-size: 14px;
-    background-color: #1c0639;*/ /* Dark background color */
-/*}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.container {
-    flex: 1;
-}
-
-footer {
-    text-align: center;
-    margin-top: auto;
-    padding: 10px;
-    color: #00d9ff;
-}
-
-.text-danger {
-    color: #ff5252 !important;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    display: block;
-}
-
-.form-label {
-    color: #00d9ff;
-    font-weight: bold;
-}
-
-.form-control, .form-select {
-    background-color: #341f71;
-    color: #ffffff;
-    border: 1px solid #5f5b97;
-}
-
-    .form-control::placeholder,
-    .form-select option {
-        color: #9b84cc;
-    }
-
-.form-text {
-    color: #00d9ff;
-    font-size: 0.85rem;
-}
-
-button {
-    z-index: 9999;
-    position: relative;
-}
-
-.btn-info {
-    background-color: #00d9ff;
-    border-color: #00d9ff;
-    color: black;
-}
-
-    .btn-info:hover {
-        background-color: #00bfff;
-        border-color: #00bfff;
-    }*/
-
-* {
+﻿* {
     font-family: 'Chakra Petch', sans-serif;
 }
 
@@ -142,32 +23,85 @@ body {
     margin-bottom: 60px;
 }
 
-/*start custom style*/
 
+.btn-add-category, .btn-add-device {
+    background-color: #ff00ff; 
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px; 
+    font-size: 0.9rem;
+    border-radius: 30px; 
+    border: none;
+    display: inline-block;
+    text-transform: uppercase;
+    transition: none; 
+}
+
+    .btn-add-category i, .btn-add-device i {
+        margin-right: 6px; 
+    }
+
+    .btn-add-category:hover, .btn-add-device:hover {
+        background-color: #ff00ff;
+        color: white; 
+        transform: none; 
+    }
+
+/* Start override select2 */
+.select2-container--default .select2-selection--single {
+    background-color: #30115e;
+    border: none;
+    border-radius: 2px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 100%;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #fff;
+        line-height: 38px;
+    }
+
+.select2-dropdown.select2-dropdown--below {
+    background-color: #30115e;
+}
+
+.select2-container--default.select2-results__option--highlighted[aria-selected] {
+    background-color: #7158fb;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: #7158fb;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    background-color: #30115e;
+    border: none;
+    border-radius: 2px;
+}
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #450dad;
+        border: 1px solid #250d49;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+        color: #ffffff;
+    }
+
+.select2 {
+    width: 100% !important;
+}
+/* End override select2 */
+
+/*start custom style*/
 .Caver-review {
     max-height: 500px;
     border-radius: 8px;
     /*    max-width:800px;*/
 }
-.btn-add-category, .btn-add-device {
-    background-color: #ff00ff; /* اللون الأساسي */
-    color: white;
-    font-weight: bold;
-    padding: 10px 20px; /* تصغير التباعد الداخلي */
-    font-size: 0.9rem; /* تصغير حجم الخط */
-    border-radius: 30px; /* نصف قطر الزوايا مع الحفاظ على الأزرار المستديرة */
-    border: none;
-    display: inline-block;
-    text-transform: uppercase;
-    transition: none; /* إزالة تأثير التحويم */
-}
-
-    .btn-add-category i, .btn-add-device i {
-        margin-right: 6px; /* تقليل المسافة بين الأيقونة والنص */
-    }
-
-    .btn-add-category:hover, .btn-add-device:hover {
-        background-color: #ff00ff; /* بدون تأثير التحويم */
-        color: white; /* يظل النص أبيض */
-        transform: none; /* إزالة التحريك */
-    }

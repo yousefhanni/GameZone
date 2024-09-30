@@ -11,6 +11,6 @@ public class EditGameFormViewModel : GameFormViewModel
     public string? CurrentCover { get; set; }
 
     [AllowedExtensions(FileSettings.AllowedExtensions),
-    MaxFileSize(FileSettings.MaxFileSizeInBytes)]
+    MaxFileSize(FileSettings.MaxFileSizeInMB)]
     public IFormFile? Cover { get; set; } = default!;
 }

@@ -1,5 +1,6 @@
 ﻿namespace GameZone.PL.Attributes;
 
+
 public class MaxFileSizeAttribute : ValidationAttribute
 {
     private readonly int _maxFileSize;
@@ -18,7 +19,7 @@ public class MaxFileSizeAttribute : ValidationAttribute
         {
             if (file.Length > _maxFileSize)
             {
-                return new ValidationResult($"Maximum allowed size is {_maxFileSize} bytes");
+                return new ValidationResult($"Maximum allowed size is {_maxFileSize} MB");
             }
         }
 
