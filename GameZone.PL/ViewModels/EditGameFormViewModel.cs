@@ -1,6 +1,4 @@
-﻿
-
-using GameZone.PL.Attributes;
+﻿using GameZone.PL.Attributes;
 
 namespace GameZone.PL.ViewModels;
 
@@ -11,6 +9,6 @@ public class EditGameFormViewModel : GameFormViewModel
     public string? CurrentCover { get; set; }
 
     [AllowedExtensions(FileSettings.AllowedExtensions),
-    MaxFileSize(FileSettings.MaxFileSizeInMB)]
+        MaxFileSize(FileSettings.MaxFileSizeInBytes)]
     public IFormFile? Cover { get; set; } = default!;
 }

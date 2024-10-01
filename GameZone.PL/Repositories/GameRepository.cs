@@ -33,5 +33,11 @@ namespace GameZone.PL.Repositories
                 .SingleOrDefault(g => g.Id == id);
         }
 
+        public Game? GetByIdToEdit(int id)
+        {
+            return _context.Games
+                .Include(g => g.Devices)
+                .SingleOrDefault(g => g.Id == id);
+        }
     }
 }

@@ -14,17 +14,12 @@
 
     public IEnumerable<Game> GetAll()
     {
-        return _gameRepository.GetAllGames(); // استدعاء الطريقة الجديدة GetAllGames
+        return _gameRepository.GetAllGames(); 
     }
-    //public IEnumerable<Game> GetAll()
-    //{
-    //    return _gameRepository.GetAll();
-    //}
-
     public Game? GetById(int id)
-        {
+    {
             return _gameRepository.GetById(id);
-        }
+    }
 
         public async Task CreateAsync(CreateGameFormViewModel model)
         {
@@ -45,7 +40,7 @@
 
         public async Task<Game?> UpdateAsync(EditGameFormViewModel model)
         {
-            var game = _gameRepository.GetById(model.Id);
+            var game = _gameRepository.GetByIdToEdit(model.Id);
 
             if (game == null)
                 return null;
