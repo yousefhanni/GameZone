@@ -23,5 +23,15 @@ namespace GameZone.PL.Repositories
             .AsNoTracking()
             .ToList();
         }
+        public Game? GetById(int id)
+        {
+            return _context.Games
+                .Include(g => g.Category)
+                .Include(g => g.Devices)
+                .ThenInclude(d => d.Device)
+                .AsNoTracking()
+                .SingleOrDefault(g => g.Id == id);
+        }
+
     }
 }
