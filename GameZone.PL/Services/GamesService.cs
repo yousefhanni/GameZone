@@ -1,24 +1,27 @@
 ﻿namespace GameZone.PL.Services;
   public class GamesService : IGamesService
     {
-        private readonly IGenericRepository<Game> _gameRepository;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _imagesPath;
+    private readonly IGameRepository _gameRepository;
+    private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly string _imagesPath;
 
-        public GamesService(IGenericRepository<Game> gameRepository,
-            IWebHostEnvironment webHostEnvironment)
-        {
-            _gameRepository = gameRepository;
-            _webHostEnvironment = webHostEnvironment;
-            _imagesPath = $"{_webHostEnvironment.WebRootPath}{FileSettings.ImagesPath}";
-        }
+    public GamesService(IGameRepository gameRepository, IWebHostEnvironment webHostEnvironment)
+    {
+        _gameRepository = gameRepository;
+        _webHostEnvironment = webHostEnvironment;
+        _imagesPath = $"{_webHostEnvironment.WebRootPath}{FileSettings.ImagesPath}";
+    }
 
-        public IEnumerable<Game> GetAll()
-        {
-            return _gameRepository.GetAll();
-        }
+    public IEnumerable<Game> GetAll()
+    {
+        return _gameRepository.GetAllGames(); // استدعاء الطريقة الجديدة GetAllGames
+    }
+    //public IEnumerable<Game> GetAll()
+    //{
+    //    return _gameRepository.GetAll();
+    //}
 
-        public Game? GetById(int id)
+    public Game? GetById(int id)
         {
             return _gameRepository.GetById(id);
         }

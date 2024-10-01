@@ -14,12 +14,12 @@
             _categoriesService = categoriesService;
             _devicesService = devicesService;
         }
-
         public IActionResult Index()
         {
             var games = _gamesService.GetAll();
             return View(games);
         }
+
 
         public IActionResult Details(int id)
         {

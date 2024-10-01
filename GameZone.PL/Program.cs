@@ -12,6 +12,8 @@ namespace GameZone.PL
 
             // Register services for DI
             builder.Services.AddScoped<IGamesService, GamesService>();
+            builder.Services.AddScoped<IGameRepository, GameRepository>();
+
             builder.Services.AddScoped<IDevicesService, DevicesService>();
             builder.Services.AddScoped<ICategoriesService, CategoriesService>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
