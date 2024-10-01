@@ -12,12 +12,12 @@
         public IActionResult Index()
         {
         var categories = _categoriesService.GetAllCategories()
-       .Select(c => new CategoryViewModel
-       {
-           Id = c.Id,
-           Name = c.Name,
-           GameCount = c.Games.Count()  // Calculate the number of games
-       }).ToList();
+             .Select(c => new CategoryViewModel
+             {
+                 Id = c.Id,
+                 Name = c.Name,
+                 GameCount = c.Games.Count()  // Calculate the number of games
+             }).ToList();
 
 
             return View(categories); // Ensure the correct model is being passed to the view
@@ -64,7 +64,6 @@
 
             return View(viewModel);
         }
-
 
         public async Task<IActionResult> Delete(int id)
         {

@@ -16,42 +16,6 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var category in Model)
-        {
-            <tr>
-                <td>@category.Name</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
- *@
-
- @model IEnumerable<GameZone.PL.ViewModels.CategoryViewModel>
-
-@{
-    ViewData["Title"] = "Categories";
-}
-
-<h2>Categories</h2>
-
-<div class="d-flex justify-content-start">
-    <a class="btn btn-add-category mt-2" asp-action="Create">
-        <i class="bi bi-plus-circle-dotted"></i> Add Category
-    </a>
-</div>
-
-<table class="table mt-4">
-    <thead>
-        <tr>
-            <th>Name</th>
             <th>Number of Games</th>
             <th>Actions</th>
         </tr>
@@ -64,9 +28,134 @@
                 <td>@category.GameCount</td> <!-- Display GameCount here -->
                 <td>
                     <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger btn-sm">Delete</a>
+                    <button class="btn btn-danger btn-sm js-delete" data-id="@category.Id" data-type="Categories" data-name="Category">
+                        Delete
+                    </button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts
+{
+    <script src="~/js/games-delete.js" asp-append-version="true"></script>
+}
+ *@
+@* 
+ @model IEnumerable<GameZone.PL.ViewModels.CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h2>Categories</h2>
+
+<div class="d-flex justify-content-start mb-3">
+    <a class="btn btn-add-category btn-primary" asp-action="Create">
+        <i class="bi bi-plus-circle-dotted"></i> Add Category
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">No categories!</h4>
+        <p class="mb-0">No categories have been added yet.</p>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Number of Games</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.Name</td>
+                        <td>@category.GameCount</td> <!-- Display GameCount here -->
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                            <button class="btn btn-danger btn-sm js-delete" data-id="@category.Id" data-type="Categories" data-name="Category">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/js/games-delete.js" asp-append-version="true"></script>
+}
+ *@
+
+ @model IEnumerable<GameZone.PL.ViewModels.CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h2 class="mt-4">Categories</h2>
+
+<div class="d-flex justify-content-start mb-3">
+    <a class="btn btn-primary btn-lg" asp-action="Create">
+        <i class="bi bi-plus-circle-dotted me-1"></i> Add Category
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning mt-5">
+        <h4 class="alert-heading">No categories!</h4>
+        <p>No categories have been added yet.</p>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Number of Games</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.Name</td>
+                        <td>@category.GameCount</td>
+                        <td class="d-flex justify-content-center">
+                            <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-sm btn-warning me-2">
+                                <i class="bi bi-pencil me-1"></i> Edit
+                            </a>
+                            <button class="btn btn-sm btn-danger js-delete" data-id="@category.Id" data-type="Categories" data-name="Category">
+                                <i class="bi bi-trash me-1"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/js/games-delete.js" asp-append-version="true"></script>
+}
