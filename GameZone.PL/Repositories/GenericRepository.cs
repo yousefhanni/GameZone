@@ -1,6 +1,4 @@
-﻿using GameZone.PL.Interfaces;
-
-namespace GameZone.PL.Repositories
+﻿namespace GameZone.PL.Repositories
 {
     //layer deal Direct with DB 
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class

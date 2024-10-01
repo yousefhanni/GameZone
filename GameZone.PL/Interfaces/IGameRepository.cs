@@ -2,7 +2,7 @@
 {
     public interface IGameRepository : IGenericRepository<Game>
     {
-       Game? GetById(int id);
+       Game? GetByIdToDetails(int id);
        Game? GetByIdToEdit(int id);
         IEnumerable<Game> GetAllGames();
     }

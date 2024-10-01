@@ -11,7 +11,7 @@
         _gameRepository = gameRepository;
     }
     //To Game Controller only  
-    public IEnumerable<SelectListItem> GetSelectList()
+       public IEnumerable<SelectListItem> GetSelectList()
         {
             return _categoryRepository.GetAll()
                 .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name })
@@ -42,7 +42,7 @@
                 await _categoryRepository.SaveAsync();
             }
         }
-    public IEnumerable<Category> GetAllCategories()
+       public IEnumerable<Category> GetAllCategories()
     {
         return _categoryRepository.GetAll().Select(category =>
         {

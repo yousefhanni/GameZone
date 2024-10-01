@@ -13,15 +13,27 @@
     }
 
     public IEnumerable<Game> GetAll()
-    {
+       {
         return _gameRepository.GetAllGames(); 
-    }
-    public Game? GetById(int id)
-    {
-            return _gameRepository.GetById(id);
-    }
+       }
 
-        public async Task CreateAsync(CreateGameFormViewModel model)
+    public Game? GetById(int id)
+       {
+            return _gameRepository.GetById(id);
+       }
+
+    public Game? GetByIdToDetails(int id)
+     {
+        return _gameRepository.GetByIdToDetails(id);
+    
+     }
+
+    public Game? GetByIdToEdit(int id)
+      {
+        return _gameRepository.GetByIdToEdit(id);
+      }
+
+    public async Task CreateAsync(CreateGameFormViewModel model)
         {
             var coverName = await SaveCoverAsync(model.Cover);
 
@@ -38,7 +50,7 @@
             await _gameRepository.SaveAsync();
         }
 
-        public async Task<Game?> UpdateAsync(EditGameFormViewModel model)
+    public async Task<Game?> UpdateAsync(EditGameFormViewModel model)
         {
             var game = _gameRepository.GetByIdToEdit(model.Id);
 
@@ -50,26 +62,27 @@
             game.CategoryId = model.CategoryId;
             game.Devices = model.SelectedDevices.Select(d => new GameDevice { DeviceId = d }).ToList();//to convert the list of device IDs(SelectedDevices, which is a list of integers) into a list of GameDevice objects. 
 
-            if (model.Cover != null)
+        if (model.Cover != null)//Checking if a new cover is uploaded
+        {
+            var oldCover = game.Cover;  // Save the old cover's name
+            game.Cover = await SaveCoverAsync(model.Cover);  // Save the new cover and update the cover property
+
+            // Delete the old cover
+            var oldCoverPath = Path.Combine(_imagesPath, oldCover);
+            if (File.Exists(oldCoverPath))
             {
-                var oldCover = game.Cover;
-                game.Cover = await SaveCoverAsync(model.Cover);
-
-                // Delete old cover
-                var oldCoverPath = Path.Combine(_imagesPath, oldCover);
-                if (File.Exists(oldCoverPath))
-                {
-                    File.Delete(oldCoverPath);
-                }
+                File.Delete(oldCoverPath);  // Delete the old cover from the file system
             }
+        }
 
-            _gameRepository.Update(game);
+
+        _gameRepository.Update(game);
             await _gameRepository.SaveAsync();
 
             return game;
         }
 
-        public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
         {
             var game = _gameRepository.GetById(id);
             if (game != null)
@@ -85,7 +98,7 @@
             }
         }
 
-        private async Task<string> SaveCoverAsync(IFormFile cover)
+    private async Task<string> SaveCoverAsync(IFormFile cover)
         {
             var coverName = $"{Guid.NewGuid()}{Path.GetExtension(cover.FileName)}";
             var path = Path.Combine(_imagesPath, coverName);
@@ -97,4 +110,5 @@
 
             return coverName;
         }
+
     }

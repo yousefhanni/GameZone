@@ -64,11 +64,11 @@
             return View(viewModel);
         }
 
-        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             await _devicesService.DeleteDeviceAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

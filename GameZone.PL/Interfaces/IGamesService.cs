@@ -6,7 +6,10 @@ public interface IGamesService
 {
     IEnumerable<Game> GetAll();
     Game? GetById(int id);
-    Task CreateAsync(CreateGameFormViewModel model);
+    Game? GetByIdToDetails(int id);
+     Game? GetByIdToEdit(int id);
+
+        Task CreateAsync(CreateGameFormViewModel model);
     Task<Game?> UpdateAsync(EditGameFormViewModel model);
     Task DeleteAsync(int id);
 }

@@ -65,11 +65,12 @@
             return View(viewModel);
         }
 
-        [HttpPost]
+
         public async Task<IActionResult> Delete(int id)
         {
             await _categoriesService.DeleteCategoryAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

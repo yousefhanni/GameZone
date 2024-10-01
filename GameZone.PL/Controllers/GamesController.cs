@@ -23,7 +23,7 @@
 
         public IActionResult Details(int id)
         {
-            var game = _gamesService.GetById(id);
+            var game = _gamesService.GetByIdToDetails(id);
             if (game == null)
             {
                 return NotFound();
@@ -60,7 +60,7 @@
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var game = _gamesService.GetById(id);
+            var game = _gamesService.GetByIdToEdit(id);
             if (game == null)
             {
                 return NotFound();
@@ -99,8 +99,7 @@
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
             await _gamesService.DeleteAsync(id);
