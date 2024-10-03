@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using NuGet.Common;
 using System;
 
 namespace GameZone.PL
@@ -22,8 +24,6 @@ namespace GameZone.PL
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 			#region  Identity and Authentication Configuration
-
-
             // Add ASP.NET Core Identity services to manage users, roles, and authentication.
             // ApplicationUser: Custom user class extending IdentityUser, representing users in your system.
             // IdentityRole: Role management system for assigning roles to users.
@@ -41,12 +41,18 @@ namespace GameZone.PL
 
                 // Require passwords to have at least one lowercase letter (e.g., a-z).
                 config.Password.RequireLowercase = true;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();//to persist Identity information using ApplicationDbContext 
-
+            }).AddEntityFrameworkStores<ApplicationDbContext>()//to persist Identity information using ApplicationDbContext 
+			  .AddDefaultTokenProviders();//providers handle token generation and validation
 
 			// Add authentication services to the application's service collection.
 			// This sets up the authentication framework (e.g., cookies, JWT, etc.) to be used in the app.
-			builder.Services.AddAuthentication();
+			builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => 
+                {
+			      options.LoginPath = "/Account/Login"; // if token expired if controller has authorize over it and browser doesnt contain token it will go to this page to get token and its default value /Account/Login
+			      options.AccessDeniedPath = "/Home/Error"; // if not authorized to open this action
+				})
+                ; 
 
 			#endregion
 
@@ -68,11 +74,12 @@ namespace GameZone.PL
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization(); // Ensure this is added after UseRouting()
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=Register}/{id?}");
+                pattern: "{controller=Account}/{action=Login}/{id?}");
 
             app.Run();
         }

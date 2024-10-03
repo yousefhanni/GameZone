@@ -1,6 +1,9 @@
-﻿namespace GameZone.PL.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace GameZone.PL.Controllers
 {
-    public class DevicesController : Controller
+	[Authorize]
+	public class DevicesController : Controller
     {
         private readonly IDevicesService _devicesService;
 

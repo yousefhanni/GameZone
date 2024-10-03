@@ -2,7 +2,8 @@
 
 namespace GameZone.PL.Data
 {
-    public class ApplicationDbContext: IdentityDbContext<ApplicationUser>    {
+    public class ApplicationDbContext: IdentityDbContext<ApplicationUser>    
+    {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
       : base(options)
         {

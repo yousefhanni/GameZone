@@ -113,7 +113,7 @@ namespace GameZone.PL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -168,7 +168,7 @@ namespace GameZone.PL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Devices");
+                    b.ToTable("Devices", (string)null);
 
                     b.HasData(
                         new
@@ -227,7 +227,7 @@ namespace GameZone.PL.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
                 });
 
             modelBuilder.Entity("GameZone.PL.Models.GameDevice", b =>
@@ -242,7 +242,7 @@ namespace GameZone.PL.Migrations
 
                     b.HasIndex("DeviceId");
 
-                    b.ToTable("GameDevices");
+                    b.ToTable("GameDevices", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

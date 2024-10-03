@@ -1,6 +1,9 @@
-﻿namespace GameZone.PL.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace GameZone.PL.Controllers
 {
-    public class CategoriesController : Controller
+	[Authorize] 
+	public class CategoriesController : Controller
     {
         private readonly ICategoriesService _categoriesService;
 

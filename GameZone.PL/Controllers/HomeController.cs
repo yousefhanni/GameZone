@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 
 namespace GameZone.PL.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IGamesService _gamesService;
