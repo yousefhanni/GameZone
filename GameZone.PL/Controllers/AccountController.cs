@@ -79,8 +79,16 @@ namespace GameZone.PL.Controllers
 			return View(model);
 		}
 
-		#endregion
-	}
+        #endregion
+
+        #region Sign Out
+        public async Task<IActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync(); //remove token from cookie store in browser
+            return RedirectToAction(nameof(Login));
+        }
+        #endregion
+    }
 
 }
 
